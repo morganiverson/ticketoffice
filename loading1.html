@@ -1,0 +1,57 @@
+Sample Loading Screen
+<html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+<style>
+
+    body{
+        background-color: white;
+    }
+.loading{
+  display: flex;
+ flex: 1;
+justify-content: center;
+align-items: center;
+}
+.flash{
+      animation:4s flashAnimation linear infinite;
+}
+.text{
+  font-family: 'Arvo', serif;
+  color: #0b6f3d;
+  text-align: center;
+  font-weight: bold;
+}
+@keyframes flashAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1.0
+  }
+  100%{
+    opacity: 0
+  }
+}
+
+</style>
+
+<body>
+
+<div class = "flash loading">
+<div>
+ <img src= "https://dbukjj6eu5tsf.cloudfront.net/emueagles.com/images/responsive/main_logo.svg">
+<div class = "text">
+ LOADING...
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
+
+
+
+
