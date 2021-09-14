@@ -8,34 +8,43 @@
   <style>
 
       body{
+        top: 70px;
           background-color: white;
           display: flex;
           justify-content: center;
+          background-image: url("ticketwebpage.png");
+          background-size: cover;
+          background-position: center;
+          margin: 0;
       }
-      .header{
-        position:absolute;
-        top: 0;
-        z-index: 100;
-        background-color: lightgrey;
-        height: 50px;
-        width: 100%;
-        padding-left:20;
-        padding-top: 20;
-        color: black;
-        text-align: left;
-        font-weight: bold;
-        font-family: 'Urbanist', sans-serif;
-      }
+    .header{
+      position:relative;
+      top: 0;
+      z-index: 100;
+      background-color: lightgrey;
+      height: 50px;
+      width: 100%;
+      padding-left:20;
+      padding-top: 20;
+      color: black;
+      text-align: left;
+      font-weight: bold;
+      font-family: 'Urbanist', sans-serif;
+      display: none;
+    }
   .loading{
     display: flex;
     flex: 1;
     height: 100%;
-    /* background-color: blue; */
+    background-color: white;
     justify-content: center;
     align-items: center;
   }
-  .flash{
-        animation:4s flashAnimation linear infinite;
+  .bgflash{
+        animation:4s BGFlashAnimation linear infinite;
+  }
+  .logoflash {
+    animation: 4s LogoFlashAnimation linear infinite;
   }
   .text{
     font-family: 'Arvo', serif;
@@ -45,7 +54,18 @@
     margin-top: 10;
     letter-spacing: 2;
   }
-  @keyframes flashAnimation {
+  @keyframes BGFlashAnimation {
+    0% {
+      opacity: .9;
+    }
+    50% {
+      opacity: .99
+    }
+    100%{
+      opacity: .9
+    }
+  }
+  @keyframes LogoFlashAnimation {
     0% {
       opacity: 0;
     }
@@ -65,8 +85,8 @@
   </div>
 
   <!-- LOADING DIV -->
-  <div class = "flash loading">
-    <div>
+  <div class = "bgflash loading">
+    <div class = "logoflash">
   <img src= "https://dbukjj6eu5tsf.cloudfront.net/emueagles.com/images/responsive/main_logo.svg">
   <div class = "text">
   LOADING...
