@@ -1,5 +1,7 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         ul{
             list-style: none;
@@ -18,9 +20,8 @@
       }
       .body {
           margin-top: 20;
-          /* top: 90px;  */
-          /* position: relative; */
-          background-color: grey;
+          
+          /* background-color: grey; */
           width: 100%;
           padding: 10;
           box-sizing:border-box;
@@ -33,10 +34,42 @@
       }
       .resource_link{
         font-family: Verdana, sans-serif;
+        margin-left: 20px;
+        cursor:default
       }
       .resource_separator{
           width: 100%;
       }
+
+
+      /* IFRAME */
+      #light-box{
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        margin: 0;
+        display: none;
+        flex: 1;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0, .8);
+        justify-content: center;
+        align-items: center; 
+        box-sizing: border-box;
+      }
+      #viewer{
+        height: 90%;
+        width: 60%;
+        border: 1px solid rgb(0, 0, 0, .3);
+        
+      }
+      #exit-box{
+        font-size: 30px;
+       margin-bottom: 20px;
+        color: rgb(211, 211, 211, .7);
+      }
+      
     </style>
     </head>
 
@@ -46,19 +79,136 @@
     <div class = 'body'>
         <div class = 'resource_header'>DIGITAL TICKETING RESOURCES</div>
         <ul>
-            <li class = 'resource_link'>About</li>
+            <li class = 'resource_link' category = 'digital_marketing' name = 'about' onclick = "openviewer(this)">About</li>
             <hr class = 'resource_separator'>
-            <li class = 'resource_link'>Account Overview</li>
-            <li class = 'resource_link'>Renewal Application</li>
-            <li class = 'resource_link'>Reissue</li>
-            <li class = 'resource_link'>Exchnage</li>
-            <li class = 'resource_link'>Transfer</li>
-            <li class = 'resource_link'>Cancel Pending Transfer</li>
-            <li class = 'resource_link'>Return</li>
-            <li class = 'resource_link'>Order History</li>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'overview' onclick = "openviewer(this)">Account Overview</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'renewal' onclick = "openviewer(this)">Renewal Application</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'reissue' onclick = "openviewer(this)">Ticket Reissue</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'exchange' onclick = "openviewer(this)">Ticket Exchnage</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'transfer' onclick = "openviewer(this)">Ticket Transfer</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'cancel' onclick = "openviewer(this)">Cancel Pending Ticket Transfer</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'return' onclick = "openviewer(this)">Ticket Return</li>
+            <hr class = 'resource_separator'>
+
+            <li class = 'resource_link' category = 'digital_marketing' name = 'history' onclick = "openviewer(this)">Order History</li>
+            <hr class = 'resource_separator'>
         </ul>
     </div>
+
+    <div id = "light-box">
+      <div id = 'exit-box' onclick="closeviewer();"><i  class="fa fa-times"></i></div>
+        <iframe 
+        id = 'viewer' 
+        src = "https://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"></iframe>
+    </div>
+
+      
 </body>
+<script src="/js/pdfobject.js"></script>
+<script>PDFObject.embed("/pdf/sample-3pp.pdf", "#example1");</script>
+<script>
+  const files = 
+    [{
+      category: 'digital_marketing', 
+      srcs : [
+        {
+          name: 'about',
+          title: 'About', 
+          src: '//pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf',
+        }, 
+        {
+          name: 'overview',
+          title: 'Account Overview', 
+          src: '//drive.google.com/a/emich.edu/file/d/1SpdAIbpzGvsXMj5dXZ5LWStMQJP7sdsn/view?usp=drive_web'
+        }, 
+        {
+          name: 'renewal',
+          title: 'Renewal Application', 
+          src: '//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/view?usp=drive_web'
+        }, 
+        {
+          name: 'reissue',
+          title: "Ticket Reissue", 
+          src: '//drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/view?usp=drive_web'
+        }, 
+        {
+          name: 'exchange',
+          title: 'Ticket Exchange', 
+          src: '//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/view?usp=drive_web'
+        }, 
+        {
+          name: 'transfer',
+          title: 'Ticket Transfer', 
+          src: '//drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/view?usp=drive_web'
+        }, 
+        {
+          name: 'cancel',
+          title: 'Cancel Pending Ticket Transfer', 
+          src: '//drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/view?usp=drive_web'
+        }, 
+        {
+          name: 'return',
+          title: 'Ticket Return', 
+          src: '//drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/view?usp=drive_web'
+        }, 
+        {
+          name: 'history',
+          title: 'Order History', 
+          src: '//drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/view?usp=drive_web'
+        }
+      ] 
+    }
+  ]
+  
+
+  const file_viewer = document.getElementById('viewer');
+  const light_box = document.getElementById('light-box');
+
+  function openviewer(elm){
+    var src = getSRC(elm);
+
+    if(src != null && src != ''){
+      file_viewer.src = src
+      light_box.style.display = 'flex';
+    }
+    else {
+      //showerror();
+      console.log("Error! No source found!")
+    }
+    
+  }
+
+  function closeviewer(){
+    light_box.style.display = 'none';
+    file_viewer.src = '';
+  }
+  function showerror(){
+    //display flex
+    //set timeout -> dfisplay none
+  }
+
+  function getSRC(elm){
+    name = elm.getAttribute('name')
+    category = elm.getAttribute('category')
+
+    console.log (name + ", " + category)
+    link = files.find((item) => item.category == category)
+    return link.srcs.find((item) => item.name == name).src
+  }
+</script>
 </html>
 
 
@@ -72,9 +222,6 @@
 						<li class="nav-submenu-item"><a class="" href="javascript:;">Mobile Ticketing FAQ</a></li>-->
 						
 						<!-- <li class="nav-submenu-item"><a class="" href="//pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf" target="_blank">About</a></li>
-						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/1SpdAIbpzGvsXMj5dXZ5LWStMQJP7sdsn/view?usp=drive_web" target="_blank">Account Overview</a></li>
-						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/view?usp=drive_web" target="_blank">Renewal Application</a></li>
-						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/view?usp=drive_web" target="_blank">Reissue</a></li>
 						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/view?usp=drive_web" target="_blank">Exchange</a></li>
 						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/view?usp=drive_web" target="_blank">Transfer</a></li>
 						<li class="nav-submenu-item"><a class="" href="//drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/view?usp=drive_web" target="_blank">Cancel Pending Transfer</a></li>
