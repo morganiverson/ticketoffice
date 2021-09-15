@@ -46,6 +46,26 @@
 
 
       /* IFRAME */
+      #iframe-container{
+        height: 90%;
+        width: 60%;
+        overflow: hidden;
+        /* 16:9 aspect ratio */
+        padding-top: 56.25%;
+        box-sizing:    m    mm;
+        position: relative;
+        background-color: blue;
+
+      }
+      /* #iframe-container iframe {
+        border: 0;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: purple;
+      } */
       #light-box{
         position: absolute;
         z-index: 1000;
@@ -72,6 +92,7 @@
         height: 90%;
         width: 80%;
         border: 1px solid rgb(0, 0, 0, .3);
+        display:none;
       }
       #exit-box{
         font-size: 30px;
@@ -119,9 +140,11 @@
 
     <div id = "light-box">
       <div id = 'exit-box' onclick="closeviewer();"><i  class="fa fa-times"></i></div>
-        <iframe 
+          <iframe 
         id = 'pdf_viewer' 
-        src = "https://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"></iframe>
+        src = "https://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"
+        allowfullscreen></iframe>
+      </div>
       <video 
       width="90%" 
       height="auto" 
@@ -152,43 +175,49 @@
           name: 'overview',
           title: 'Account Overview', 
           type: VIDEO, 
-          src: '/resources/ACCOUNTOVERVIEW.mp4'
+          src: '//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/preview?usp=drive_web'
         }, 
         {
           name: 'renewal',
           title: 'Renewal Application', 
           type: VIDEO, 
-          src: '//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/view?usp=drive_web'
+          src: '//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/preview?usp=drive_web'
         }, 
         {
           name: 'reissue',
           title: "Ticket Reissue", 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/view?usp=drive_web'
+          type: VIDEO, 
+          src: '//drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/preview?usp=drive_web'
         }, 
         {
           name: 'exchange',
-          title: 'Ticket Exchange', 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/view?usp=drive_web'
+          title: 'Ticket Exchange',
+          type: VIDEO,  
+          src: '//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/preview?usp=drive_web'
         }, 
         {
           name: 'transfer',
           title: 'Ticket Transfer', 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/view?usp=drive_web'
+          type: VIDEO, 
+          src: '//drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/preview?usp=drive_web'
         }, 
         {
           name: 'cancel',
           title: 'Cancel Pending Ticket Transfer', 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/view?usp=drive_web'
+          type: VIDEO, 
+          src: '//drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/preview?usp=drive_web'
         }, 
         {
           name: 'return',
           title: 'Ticket Return', 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/view?usp=drive_web'
+          type: VIDEO, 
+          src: '//drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/preview?usp=drive_web'
         }, 
         {
           name: 'history',
           title: 'Order History', 
-          // src: 'http://drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/view?usp=drive_web'
+          type: VIDEO, 
+          src: '//drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/preview?usp=drive_web'
         }
       ] 
     }
@@ -214,17 +243,10 @@
     console.log(view)
 
     if(view.src != null && view.src != ''){
-      if(view.type == VIDEO){
-        video_src.src = view.src
-        showBLOCK(video_viewer)
-        hide(pdf_viewer)
-      }
-      else {
-        pdf_viewer.src = view.src
-        showBLOCK(pdf_viewer)
-        hide(video_viewer)
-      }
-
+      pdf_viewer.style.width = (view.type == VIDEO) ? '90%': '60%'
+      pdf_viewer.src = view.src
+      showBLOCK(pdf_viewer)
+      
       showFLEX(light_box)
     }
     else {
@@ -247,9 +269,7 @@
     name = elm.getAttribute('name')
     category = elm.getAttribute('category')
 
-    // console.log (name + ", " + category)
-    src = files.find((item) => item.category == category)
-    r =  src.srcs.find((item) => item.name == name);
+    r = files.find((item) => item.category == category).srcs.find((item) => item.name == name);
 
     return {src: r.src, type: r.type}
   }
