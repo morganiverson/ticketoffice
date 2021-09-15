@@ -1,7 +1,10 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,400;0,600;1,700&display=swap" rel="stylesheet">
+
+    
     <style>
         ul{
             list-style: none;
@@ -47,6 +50,7 @@
         position: absolute;
         z-index: 1000;
         top: 0;
+        left: 0;
         margin: 0;
         display: none;
         flex: 1;
@@ -58,11 +62,16 @@
         align-items: center; 
         box-sizing: border-box;
       }
-      #viewer{
+      #pdf_viewer{
         height: 90%;
         width: 60%;
         border: 1px solid rgb(0, 0, 0, .3);
-        
+        display: none
+      }
+      #video_viewer{
+        height: 90%;
+        width: 80%;
+        border: 1px solid rgb(0, 0, 0, .3);
       }
       #exit-box{
         font-size: 30px;
@@ -74,7 +83,7 @@
     </head>
 
 <body>
-    <div class = 'header'>Digital Ticketing</div>
+    <div class = 'header'>Resources</div>
 
     <div class = 'body'>
         <div class = 'resource_header'>DIGITAL TICKETING RESOURCES</div>
@@ -111,15 +120,24 @@
     <div id = "light-box">
       <div id = 'exit-box' onclick="closeviewer();"><i  class="fa fa-times"></i></div>
         <iframe 
-        id = 'viewer' 
+        id = 'pdf_viewer' 
         src = "https://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"></iframe>
-    </div>
+      <video 
+      width="90%" 
+      height="auto" 
+      id = 'video_viewer'
+      controls>
+        <source id = 'video_src' src = 'resources/ACCOUNTOVERVIEW.mp4' type="video/mp4">
+      </video>
+    
+      </div>
+
 
       
 </body>
-<script src="/js/pdfobject.js"></script>
-<script>PDFObject.embed("/pdf/sample-3pp.pdf", "#example1");</script>
 <script>
+  const VIDEO = 1;
+  const PDF = 2;
   const files = 
     [{
       category: 'digital_marketing', 
@@ -127,73 +145,97 @@
         {
           name: 'about',
           title: 'About', 
-          src: '//pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf',
+          type: PDF, 
+          src: 'http://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf',
         }, 
         {
           name: 'overview',
           title: 'Account Overview', 
-          src: '//drive.google.com/a/emich.edu/file/d/1SpdAIbpzGvsXMj5dXZ5LWStMQJP7sdsn/view?usp=drive_web'
+          type: VIDEO, 
+          src: '/resources/ACCOUNTOVERVIEW.mp4'
         }, 
         {
           name: 'renewal',
           title: 'Renewal Application', 
-          src: '//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/view?usp=drive_web'
         }, 
         {
           name: 'reissue',
           title: "Ticket Reissue", 
-          src: '//drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/view?usp=drive_web'
         }, 
         {
           name: 'exchange',
           title: 'Ticket Exchange', 
-          src: '//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/view?usp=drive_web'
         }, 
         {
           name: 'transfer',
           title: 'Ticket Transfer', 
-          src: '//drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/view?usp=drive_web'
         }, 
         {
           name: 'cancel',
           title: 'Cancel Pending Ticket Transfer', 
-          src: '//drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/view?usp=drive_web'
         }, 
         {
           name: 'return',
           title: 'Ticket Return', 
-          src: '//drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/view?usp=drive_web'
         }, 
         {
           name: 'history',
           title: 'Order History', 
-          src: '//drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/view?usp=drive_web'
+          // src: 'http://drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/view?usp=drive_web'
         }
       ] 
     }
   ]
   
-
-  const file_viewer = document.getElementById('viewer');
+  const pdf_viewer = document.getElementById('pdf_viewer');
+  const video_viewer = document.getElementById('video_viewer')
   const light_box = document.getElementById('light-box');
+  const video_src = document.getElementById('video_src')
+
+  function showFLEX(elm){
+    elm.style.display = 'flex';
+  }
+  function showBLOCK(elm){
+    elm.style.display = 'block';
+  }
+  function hide(elm) {
+    elm.style.display = 'none'
+  }
 
   function openviewer(elm){
-    var src = getSRC(elm);
+    var view = getSRC(elm);
+    console.log(view)
 
-    if(src != null && src != ''){
-      file_viewer.src = src
-      light_box.style.display = 'flex';
+    if(view.src != null && view.src != ''){
+      if(view.type == VIDEO){
+        video_src.src = view.src
+        showBLOCK(video_viewer)
+        hide(pdf_viewer)
+      }
+      else {
+        pdf_viewer.src = view.src
+        showBLOCK(pdf_viewer)
+        hide(video_viewer)
+      }
+
+      showFLEX(light_box)
     }
     else {
       //showerror();
-      console.log("Error! No source found!")
-    }
-    
+      console.log("Error! No source found.")
+    } 
   }
 
   function closeviewer(){
     light_box.style.display = 'none';
-    file_viewer.src = '';
+    pdf_viewer.src = '';
+    video_src.src = ''
   }
   function showerror(){
     //display flex
@@ -204,9 +246,11 @@
     name = elm.getAttribute('name')
     category = elm.getAttribute('category')
 
-    console.log (name + ", " + category)
-    link = files.find((item) => item.category == category)
-    return link.srcs.find((item) => item.name == name).src
+    // console.log (name + ", " + category)
+    src = files.find((item) => item.category == category)
+    r =  src.srcs.find((item) => item.name == name);
+
+    return {src: r.src, type: r.type}
   }
 </script>
 </html>
