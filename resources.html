@@ -82,18 +82,13 @@
         align-items: center; 
         box-sizing: border-box;
       }
-      #pdf_viewer{
+      #media_viewer{
         height: 90%;
         width: 60%;
         border: 1px solid rgb(0, 0, 0, .3);
         display: none
       }
-      #video_viewer{
-        height: 90%;
-        width: 80%;
-        border: 1px solid rgb(0, 0, 0, .3);
-        display:none;
-      }
+    
       #exit-box{
         font-size: 30px;
        margin-bottom: 20px;
@@ -141,18 +136,10 @@
     <div id = "light-box">
       <div id = 'exit-box' onclick="closeviewer();"><i  class="fa fa-times"></i></div>
           <iframe 
-        id = 'pdf_viewer' 
+        id = 'media_viewer' 
         src = "https://pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"
         allowfullscreen></iframe>
       </div>
-      <video 
-      width="90%" 
-      height="auto" 
-      id = 'video_viewer'
-      controls>
-        <source id = 'video_src' src = 'resources/ACCOUNTOVERVIEW.mp4' type="video/mp4">
-      </video>
-    
       </div>
 
 
@@ -161,6 +148,7 @@
 <script>
   const VIDEO = 1;
   const PDF = 2;
+  /* 
   const files = 
     [{
       category: 'digital_marketing', 
@@ -222,8 +210,31 @@
       ] 
     }
   ]
+*/
+  // console.log(JSON.stringify(files, null, 2))
+
+  var files = []
   
-  const pdf_viewer = document.getElementById('pdf_viewer');
+
+  window.onload = () => {
+    //get file details
+    fetch('resources/resources.json')
+    .then(response => response.json())
+    .then(jsonResponse => {
+    files = jsonResponse;
+    })
+    .then(
+    () => {
+      console.log(files)
+      //stop loading
+    }
+  )
+  }
+
+  
+   // outputs a javascript object from the parsed json
+  
+  const media_viewer = document.getElementById('media_viewer');
   const video_viewer = document.getElementById('video_viewer')
   const light_box = document.getElementById('light-box');
   const video_src = document.getElementById('video_src')
@@ -243,9 +254,10 @@
     console.log(view)
 
     if(view.src != null && view.src != ''){
-      pdf_viewer.style.width = (view.type == VIDEO) ? '90%': '60%'
-      pdf_viewer.src = view.src
-      showBLOCK(pdf_viewer)
+      media_viewer.style.width = (view.type == VIDEO) ? '90%': '60%';
+      media_viewer.style.height = (view.type == VIDEO) ? '70%': '90%'
+      media_viewer.src = view.src
+      showBLOCK(media_viewer)
       
       showFLEX(light_box)
     }
@@ -257,8 +269,7 @@
 
   function closeviewer(){
     light_box.style.display = 'none';
-    pdf_viewer.src = '';
-    video_src.src = ''
+    media_viewer.src = '';
   }
   function showerror(){
     //display flex

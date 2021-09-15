@@ -1,0 +1,61 @@
+[
+    {
+      "category": "digital_marketing",
+      "srcs": [
+        {
+          "name": "about",
+          "title": "About",
+          "type": 2,
+          "src": "//pachtml-production.s3-us-west-2.amazonaws.com/www/emich-multi/documents/ABOUT_PAGE.pdf"
+        },
+        {
+          "name": "overview",
+          "title": "Account Overview",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/preview?usp=drive_web"
+        },
+        {
+          "name": "renewal",
+          "title": "Renewal Application",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1JTcWefDc1JYraEvmUw_Ce0bL8vdj_o0b/preview?usp=drive_web"
+        },
+        {
+          "name": "reissue",
+          "title": "Ticket Reissue",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/12WV554nfxQ3exdCxLCZGZ80rGAPmD1JH/preview?usp=drive_web"
+        },
+        {
+          "name": "exchange",
+          "title": "Ticket Exchange",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1BCoFyx4RN38NbUhFcubYzOL3M1Krfz_y/preview?usp=drive_web"
+        },
+        {
+          "name": "transfer",
+          "title": "Ticket Transfer",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1ajhTsfNMYicbxDYS2755qZAmxNi7sIHV/preview?usp=drive_web"
+        },
+        {
+          "name": "cancel",
+          "title": "Cancel Pending Ticket Transfer",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1E5PEHwJlBASkIYQELzyxrLmJA70AV_rd/preview?usp=drive_web"
+        },
+        {
+          "name": "return",
+          "title": "Ticket Return",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1E5p4tH8UfAwiEUnfJLmyNtKRPM6KUxPr/preview?usp=drive_web"
+        },
+        {
+          "name": "history",
+          "title": "Order History",
+          "type": 1,
+          "src": "//drive.google.com/a/emich.edu/file/d/1gQ-X0HuuM8-3atyXMgBADp8ZLOy_zgP-/preview?usp=drive_web"
+        }
+      ]
+    }
+  ]
