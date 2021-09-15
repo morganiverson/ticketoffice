@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
       .header{
         top: 0;
@@ -14,12 +16,270 @@
         font-weight: bold;
         font-family: 'Urbanist', sans-serif;
       }
+      .body {
+          margin-top: 20;
+          width: 100%;
+          padding: 10;
+          box-sizing:border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+      .input_label{
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+        color: #00693c 
+      }     
+      input, select, textarea {
+          margin-top: 5px;
+          margin-left: 5px;
+          margin-bottom: 5px;
+          width: 80%;
+          border: 2px solid rgb(211, 211, 211, .5);
+          border-radius: 5px;
+          padding: 5px;
+
+        font-size: 13px;
+        /* height: 20px; */
+        box-sizing: border-box;
+        font-family: Verdana, sans-serif;
+      }
+      textarea {
+          resize: none;
+      }
+      input, select, textarea:focus{
+          outline: none;
+      }
+
+      input[type = 'submit']{
+        background-color: green;
+        margin-top: 15px;
+      }
+      .error{
+        color: red;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+        display: none;
+        /* margin-bottom: 5px; */
+        margin-left: 10px;
+
+      }
+      .form{
+          width:70%;
+          /* background-color: lightgray; */
+          padding: 10px;
+          box-sizing: border-box;
+      }
+      
+      #final-email, #confirmation{
+          display: none;
+          width: 70%;
+      }
+      .small-header{
+        font-size: 13px;
+        font-family: Verdana, sans-serif;
+        color:#00693c;
+        font-weight: bold
+      }
+      #email-body, #email-data{
+          margin-bottom: 10px;
+      }
+
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            var tx = document.getElementsByTagName('textarea')
+            for (var i = 0; i < tx.length; i++) {
+                tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+                tx[i].addEventListener("input", OnInput, false);
+            }
+        });
+      
+        function OnInput(e) {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
+        
+    </script>
 
 </head>
 <body>
     <div class = 'header'>Resources</div>
 
+    <div class = 'body'>
+
+        <div class = 'form'>
+            <div id="contact_form">
+                <div class = 'input_label'>NAME</div>
+                <input type = "text" name = 'sender' id = 'sender'>
+                <div class = 'error' id = "name-error">Please enter your name.</div>
+
+
+                <div class = 'input_label'>EMAIL ADDRESS</div>
+                <input type = "email" name = 'email' id = 'email'>
+                <div class = 'error' id = "email-error">Please enter a valid email.</div>
+                
+
+                <div class = 'input_label'>REASON FOR CONTACT</div>
+                <select name = 'reason' id = 'reason' >
+                    <option value = '' selected disabled>-- Select an option --</option>
+                    <option value = 'Ticket Sales'>Ticket Sales</option>
+                    <option value = 'Account Management'>Account Management</option>
+                    <option value = 'Upcoming Events'>Upcoming Events</option>
+                    <option value = 'Other'>Other</option>
+                </select>
+                <div class = 'error' id = "reason-error">Please select a reason for contact.</div>
+                
+
+                <div class = 'input_label'>MESSAGE</div>
+                <textarea  name = 'message' id = 'message'></textarea>
+
+                <div class = 'error' id = 'message-error'>Please enter a message body.</div>
+
+                <input type = 'submit' onclick = 'send()' value="Send!"> 
+            </div>
+        </div>
+
+            <div id = 'confirmation'>
+                Email Sent! 
+                <br>
+                Thank you for support our EMU Eagles!
+            </div>
+
+            <div id = 'final-email'>
+                <div class = 'small-header'>Sample Email </div> 
+                <div class = 'input_label'>Subject</div>
+                <textarea readonly type = 'text' id = 'email-subject'></textarea>
+
+                <div class = 'input_label'>Message Body</div>
+                <textarea readonly id = 'email-body'></textarea>
+
+                <div class = 'small-header'>Email Data </div> 
+                <textarea readonly id = 'email-data'></textarea>
+
+            </div>
+        
+    </div>
 
 </body>
+
+<script>
+    const input_error_pairs = [
+        {
+            input_name: "email", 
+            error_id: "email-error"
+        }, 
+        {
+            input_name: "sender", 
+            error_id: "name-error"
+        }, {
+            input_name: "reason", 
+            error_id: "reason-error"
+        }, 
+        {
+            input_name: "message", 
+            error_id: "message-error"
+        }
+    ];
+
+    input_error_pairs.forEach(pair => {
+        console.log(pair.input_name)
+        document.getElementById(pair.input_name).addEventListener('keyup', () => {
+            document.getElementById(pair.error_id).style.display = 'none'
+        })
+        document.getElementById(pair.input_name).addEventListener('change', () => {
+            document.getElementById(pair.error_id).style.display = 'none'
+        })
+    })
+    const form = document.getElementById('contact_form')
+
+    function requirementsMet() {
+        var met = true
+        form.childNodes.forEach(node => {
+            var tag = node.tagName;
+            var type = node.type
+
+            if(
+                ( (tag == 'INPUT' && type != 'submit')  ||
+                    tag == 'TEXTAREA' ||
+                    tag == 'SELECT') 
+                    && node.value == ''
+               ) {
+                    pair = input_error_pairs.find(item => item.input_name == node.name)
+                    console.log(node.name + " " + pair.error_id)
+                    document.getElementById(pair.error_id).style.display = 'block';
+                    met = false
+                }
+        });
+        return met;
+    }
+
+    function fitContent(elm) {
+            elm.style.height = 'auto';
+            elm.style.height = (elm.scrollHeight + 5) + 'px';
+        }
+   
+    function send(){
+        console.log(requirementsMet())
+        if(requirementsMet()){
+
+            //json
+            emailJSON = {
+                messageDetails: {
+                    sentAt: new Date().toLocaleString()
+                }
+            }
+
+            form.childNodes.forEach(node => {
+                // console.log(item.tagName)
+                var tag = node.tagName;
+                var type = node.type
+
+                if(
+                    ( (tag == 'INPUT' && type != 'submit')  ||
+                        tag == 'TEXTAREA' ||
+                        tag == 'SELECT') 
+                ) {
+                    emailJSON['messageDetails'][node.name] = node.value  
+                    }
+            })
+
+            emailJSON.emailData = {
+                subjectLine: 'Ticket Office Contact Form [From=' + emailJSON.messageDetails.sender + ' (' + emailJSON.messageDetails.email + ') Reason=' + emailJSON.messageDetails.reason + ' Sent At=' + emailJSON.messageDetails.sentAt + ']',
+                messageBody: 'This is a message from the EMU Ticket Office Contact Us Form. Details Below.\n\n' + 
+                            '\nSender: \"' + emailJSON.messageDetails.sender + '\"' +
+                            '\n\nEmail: \"' + emailJSON.messageDetails.email + '\"' +
+                            '\n\nReason For Contact: \"' + emailJSON.messageDetails.reason + '\"' +
+                            '\n\n\nMessage: \n\"\n\t' + emailJSON.messageDetails.message.replace('\n', '\n\t') + '\n\"'
+            }
+
+            console.log(JSON.stringify(emailJSON, null, 2));
+
+            //SET
+            const email_subject = document.getElementById('email-subject');
+            email_subject.value = emailJSON.emailData.subjectLine;
+
+            const email_body = document.getElementById('email-body')
+            email_body.value = emailJSON.emailData.messageBody;
+            
+            
+            const email_data = document.getElementById('email-data')
+            email_data.value = JSON.stringify(emailJSON, null, 2);
+            
+
+            //DISPLAY
+            document.getElementById('contact_form').style.display = 'none';
+
+            document.getElementById('confirmation').style.display = 'block';
+            document.getElementById('final-email').style.display = 'block';
+            
+            fitContent(email_subject)
+            fitContent(email_data)
+            fitContent(email_body)
+    }
+    }
+
+</script>
 </html>
