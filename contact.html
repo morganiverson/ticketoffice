@@ -246,13 +246,15 @@
                     }
             })
 
+            emailJSON.messageDetails.message = emailJSON.messageDetails.message.replaceAll('\n', '\n\t')
             emailJSON.emailData = {
-                subjectLine: 'Ticket Office Contact Form [From=' + emailJSON.messageDetails.sender + ' (' + emailJSON.messageDetails.email + ') Reason=' + emailJSON.messageDetails.reason + ' Sent At=' + emailJSON.messageDetails.sentAt + ']',
-                messageBody: 'This is a message from the EMU Ticket Office Contact Us Form. Details Below.\n\n' + 
+                subjectLine: 'Ticket Office Contact Us Form [From=' + emailJSON.messageDetails.sender + ' (' + emailJSON.messageDetails.email + '), Reason=' + emailJSON.messageDetails.reason + ', SentAt=' + emailJSON.messageDetails.sentAt + ']',
+                messageBody: 'This is a message from the EMU Ticket Office Contact Us Form.\n\n' + 
                             '\nSender: \"' + emailJSON.messageDetails.sender + '\"' +
                             '\n\nEmail: \"' + emailJSON.messageDetails.email + '\"' +
                             '\n\nReason For Contact: \"' + emailJSON.messageDetails.reason + '\"' +
-                            '\n\n\nMessage: \n\"\n\t' + emailJSON.messageDetails.message.replace('\n', '\n\t') + '\n\"'
+                            '\n\nSent At: \"' + emailJSON.messageDetails.sentAt + '\"' +
+                            '\n\n\nMessage: \n\t\"\n\t' + emailJSON.messageDetails.message + '\n\t\"'
             }
 
             console.log(JSON.stringify(emailJSON, null, 2));
