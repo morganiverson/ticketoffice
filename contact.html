@@ -8,17 +8,27 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <style>
+        body{
+            top: 70px;
+          background-color: white;
+          display: flex;
+          justify-content: center;
+          margin: 0;
+        }
       .header{
-        top: 0;
-        box-sizing: border-box;
-        z-index: 100;
-        background-color: lightgrey;
-        height: 100px;
-        width: 100%;
-        padding:20;
-        color: black;
-        font-weight: bold;
-        font-family: 'Urbanist', sans-serif;
+        position:relative;
+      top: 0;
+      z-index: 100;
+      background-color: lightgrey;
+      height: 50px;
+      width: 100%;
+      padding-left:20;
+      padding-top: 20;
+      color: black;
+      text-align: left;
+      font-weight: bold;
+      font-family: 'Urbanist', sans-serif;
+      /* display: none; */
       }
       .body {
           margin-top: 20;
@@ -30,6 +40,8 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          position: absolute;
+          margin-top: 100px;
       }
       .input_label{
         margin-left: 10px;
@@ -61,7 +73,9 @@
       i{
         color: #00693c;
         font-size: 20px;
-        margin-bottom: 10px;      
+        width: 20px;
+        margin-bottom: 10px; 
+        margin-right: 5px; 
         }
       input[type = 'submit']{
         background-color: green;
@@ -88,6 +102,12 @@
       #final-email, #confirmation{
           display: none;
       }
+      .va_top{
+          vertical-align: top;
+      }
+      .va_middle{
+          vertical-align:text-top;
+      }
       
       #final-email{
           margin-top: 25px;
@@ -113,7 +133,7 @@
         text-align: center;
         /* -webkit-text-stroke-width: 3px;
         -webkit-text-stroke-color: #00693c;         */
-        border: 1px solid lightgrey;
+        /* border: 1px solid lightgrey; */
         font-size: 40;
 
       }
@@ -134,14 +154,7 @@
         background-color:lightgray;
         margin: 15px 0px
       }
-      .title{
-          font-size: 40;
-          font-family: Verdana, sans-serif;
-        color:#00693c;
-        font-weight: bold;
-        align-self: flex-start;
-        width: 70%;
-      }
+      
       .description{
         font-family: Verdana, sans-serif;
         color: black;
@@ -160,10 +173,17 @@
       .original_body{
           margin-left: 10;
           margin-top: 10;
-          text-align: center;
+          text-align: left;
           font-weight: bold;
       }
-
+    .title{
+            font-size: 40;
+            font-family: Verdana, sans-serif;
+            color:#00693c;
+            font-weight: bold;
+            align-self: flex-start;
+            width: 70%;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function(e) {
@@ -236,23 +256,24 @@
 <hr>
        <div class = 'original'>
            <div class = 'original_body'>
-                   <i class="fas fa-map-marker"></i>
-                       <br>
-                       Eastern Athletics Ticket Office
+                   <i class="fas fa-map-marker va_top"></i>
+                       <span style = 'display: inline-block;'> 
+                        Eastern Athletics Ticket Office
                        <br>Convocation Center
                        <br>799 N Hewitt Rd.
-                       <br>Ypsilanti, MI 4819
+                       <br>Ypsilanti, MI 4819</span><br>
+                      
 
                    <p>
-                       <i class="fas fa-mobile-alt"></i> 
-                       <br>
-                       734.487.3669
+                       <i class="fas fa-mobile-alt va_middle"></i> 
+                       <!-- <br> -->
+                       <span style = 'text-decoration: none' >734.487.3669</span>
                    </p>
                    <p>
-                       <i class="fas fa-envelope"></i>
-                       <br>
-                       emu_tix@emich.edu
-                       <!-- <a href="mailto:emu_tix@emich.edu">emu_tix@emich.edu</a> -->
+                       <i class="fas fa-envelope va_middle"></i>
+                       <!-- <br> -->
+                       <!-- emu_tix@emich.edu -->
+                       <a style = 'text-decoration: none' href="mailto:emu_tix@emich.edu">emu_tix@emich.edu</a>
                    </p>
            </div>
        </div>
