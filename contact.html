@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <style>
+        .back{
+        font-style: italic;
+        text-decoration: none;
+        font-size: 12px;
+        color:black;
+        padding-top: 10px;
+      }
+      .back:hover{
+        color:#00693c
+      }
+
+      .header i{
+        vertical-align: text-top;
+      }
         body{
             top: 70px;
           background-color: white;
@@ -101,6 +115,19 @@
       }
       #final-email, #confirmation{
           display: none;
+      }
+
+      .page_body {
+          width: 100%;
+          padding: 10;
+          box-sizing:border-box;
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          position: absolute;
+          margin-top: 100px;
       }
       .va_top{
           vertical-align: top;
@@ -203,7 +230,8 @@
 
 </head>
 <body>
-    <div class = 'header'>Resources</div>
+    <div class = 'header'>      <a class = 'back' href = '//morganiverson.github.io/ticketoffice'><i class="fas fa-home"></i></a>
+        Contact Us</div>
 
     <div class = 'body'>
         <div class = 'title'>Contact Us</div>
