@@ -1,120 +1,131 @@
-  <html>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,400;0,600;1,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,400;0,600;1,700&display=swap"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
-  <style>
-.back{
-        font-style: italic;
-        text-decoration: none;
-        font-size: 12px;
-        color:black;
-        padding-top: 10px;
-      }
-      .back:hover{
-        color:#00693c
-      }
+<style>
+	.header i:hover {
+		color: #00693c
+	}
 
-      i{
-        vertical-align: text-top;
-      }
+	.header i {
+		vertical-align: baseline;
+		color: black;
+		margin-right: 5px;
+		font-size: 12px;
+	}
 
-      body{
-        top: 70px;
-          background-color: white;
-          display: flex;
-          justify-content: center;
-          background-image: url("ticketwebpage.png");
-          background-size: cover;
-          background-position: center;
-          margin: 0;
-      }
-    .header{
-      position:relative;
-      top: 0;
-      z-index: 100;
-      background-color: lightgrey;
-      height: 50px;
-      width: 100%;
-      padding-left:20;
-      padding-top: 20;
-      color: black;
-      text-align: left;
-      font-weight: bold;
-      font-family: 'Urbanist', sans-serif;
-      /* display: none; */
-    }
-  .loading{
-    position: absolute;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-  }
-  .bgflash{
-        animation:4s BGFlashAnimation linear infinite;
-  }
-  .logoflash {
-    animation: 4s LogoFlashAnimation linear infinite;
-  }
-  .text{
-    font-family: 'Arvo', serif;
-    color: #0b6f3d;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10;
-    letter-spacing: 2;
-  }
-  @keyframes BGFlashAnimation {
-    0% {
-      opacity: .9;
-    }
-    50% {
-      opacity: .99
-    }
-    100%{
-      opacity: .9
-    }
-  }
-  @keyframes LogoFlashAnimation {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1.0
-    }
-    100%{
-      opacity: 0
-    }
-  }
+	i {
+		vertical-align: text-top;
+	}
 
-  </style>
+	body {
+		top: 70px;
+		/* background-color: white; */
+		display: flex;
+		justify-content: center;
+		background-image: url("assets/ticketwebpage.png");
+		background-size: cover;
+		background-position: center;
+		margin: 0;
+	}
 
-  <body>
-  <div class = 'header'>
-          <a class = 'back' href = '//morganiverson.github.io/ticketoffice'><i class="fas fa-home"></i></a> Sample Loading Screen 1
-  </div>
+	.header {
+		position: relative;
+		top: 0;
+		z-index: 100;
+		background-color: lightgrey;
+		height: 50px;
+		width: 100%;
+		padding-left: 20;
+		padding-top: 20;
+		color: black;
+		text-align: left;
+		font-weight: bold;
+		font-family: 'Urbanist', sans-serif;
+		/* display: none; */
+	}
 
-  <!-- LOADING DIV -->
-  <div class = "bgflash loading">
-    <div class = "logoflash">
-  <img src= "https://dbukjj6eu5tsf.cloudfront.net/emueagles.com/images/responsive/main_logo.svg">
-  <div class = "text">
-  LOADING...
-  </div>
-  </div>
+	.loading {
+		position: absolute;
+		display: flex;
+		width: 100%;
+		height: 100%;
+		background-color: #f2f3f4;
+		justify-content: center;
+		align-items: center;
+	}
 
-  </div>
+	.bgflash {
+		animation: 4s BGFlashAnimation linear infinite;
+	}
 
-  </body>
-  </html>
+	.logoflash {
+		animation: 4s LogoFlashAnimation linear infinite;
+	}
 
+	.text {
+		font-family: 'Arvo', serif;
+		color: #0b6f3d;
+		text-align: center;
+		font-weight: bold;
+		margin-top: 10;
+		letter-spacing: 2;
+	}
 
+	@keyframes BGFlashAnimation {
+		0% {
+			opacity: .95;
+		}
 
+		50% {
+			opacity: 1
+		}
 
+		100% {
+			opacity: .95
+		}
+	}
+
+	@keyframes LogoFlashAnimation {
+		0% {
+			opacity: 0;
+		}
+
+		50% {
+			opacity: 1.0
+		}
+
+		100% {
+			opacity: 0
+		}
+	}
+</style>
+
+<body>
+	<div class='header'>
+		<a class='back' href='//morganiverson.github.io/ticketoffice'><i class="fas fa-home"></i></a> Sample Loading
+		Screen 1
+	</div>
+
+	<!-- LOADING DIV -->
+	<div class="bgflash loading">
+		<div class="logoflash">
+			<img src="https://dbukjj6eu5tsf.cloudfront.net/emueagles.com/images/responsive/main_logo.svg">
+			<div class="text">
+				LOADING...
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
