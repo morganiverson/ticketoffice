@@ -7,8 +7,12 @@
 
     <style>
         body {
+            top: 70px;
             font-family: Verdana, Tahoma, sans-serif;
             font-size: 15px;
+            display: flex;
+			justify-content: center;
+			margin: 0;
         }
 
         ul p {
@@ -37,14 +41,33 @@
             background-color: lightgrey;
             height: 50px;
             width: 100%;
-            padding-left: 20;
-            padding-top: 20;
+            padding: 20;
             color: black;
             text-align: left;
             font-weight: bold;
             font-family: 'Urbanist', sans-serif;
             /* display: none; */
         }
+        
+
+		.header i {
+			vertical-align: baseline;
+			color: black;
+			margin-right: 5px;
+			font-size: 12px;
+		}
+        .page_body {
+			width: 100%;
+			padding: 10;
+			box-sizing: border-box;
+
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-start;
+			position: absolute;
+			margin-top: 100px;
+		}
     </style>
 </head>
 
@@ -52,18 +75,19 @@
     <div class='header'> <a disabled class='back' href='//morganiverson.github.io/ticketoffice'><i
                 class="fas fa-home"></i></a>
         Ticket Office Webpage Review Prototypes and Examples</div>
-    <ul>
+   <div class = "page_body">
+        <ul>
         <p>Contact Us Prototype</p>
-        <li><a href='/contact.html'>Contact Us</a></li>
+        <li><a href='/ticketoffice/contact.html'>Contact Us</a></li>
 
         <p>Loading Screen Samples</p>
-        <li><a href='/loading1.html'>Loading Screen 1</a></li>
-        <li><a href='/loading2.html'>Loading Screen 2</a></li>
-        <li><a href='/loading 3.html'>Loading Screen 3</a></li>
+        <li><a href='/ticketoffice/loading1.html'>Loading Screen 1</a></li>
+        <li><a href='/ticketoffice/loading2.html'>Loading Screen 2</a></li>
+        <li><a href='/ticketoffice/loading 3.html'>Loading Screen 3</a></li>
         <p>Resources Webpage Protype</p>
-        <li><a href='/resources.html'>Resources</a></li>
+        <li><a href='/ticketoffice/resources.html'>Resources</a></li>
     </ul>
-
+</div>
 </body>
 
 </html>
