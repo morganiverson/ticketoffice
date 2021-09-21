@@ -1,0 +1,107 @@
+<html>
+
+<script>
+	//OBJECTS
+	class Hours {
+		//MILITARY OR STANDARD?
+		constructor(start, end) {
+			this.start = start;
+			this.end = end;
+		}
+		
+		toString(){
+			return this.start + " - " + this.end
+		}
+		
+		getTotalHours(){
+			// return end - start;
+		}
+	}
+
+	//CONSTANTS
+	const events_JSON = [
+		 {
+			"ID": "000", 
+			"eventTitle": "Game 1", 
+			"eventType" : "Sport", 
+			"eventDate" : "09/21/2021", 
+			"eventHours": (new Hours("5:00PM", "7:00PM")).toString(), 
+			"workHours": (new Hours("3:00PM", "7:00PM")).toString(), 
+			"workersAvailable": []
+		}, 
+		{
+			"ID": "001", 
+			"eventTitle": "Game 2", 
+			"eventType" : "Concert", 
+			"eventDate" : "09/22/2021", 
+			"eventHours": (new Hours("5:00PM", "7:00PM")).toString(), 
+			"workHours": (new Hours("3:00PM", "7:00PM")).toString(), 
+			"workersAvailable": ["Morgan Iverson (E#)"]
+		}
+	]
+
+
+	//EVENTS
+	window.onload = () => {
+
+		//POPULATE TABLE
+		const table = document.getElementById('table')
+
+		events_JSON.forEach(item => {	
+			console.log(item)		
+			table.innerHTML+=log_table_row(item.ID, item.eventTitle, item.eventType,item.eventDate, item.eventHours, item.workHours, item.workersAvailable)
+		});
+	}
+
+	//FUNCTIONS
+
+	//TABLE
+	function log_table_row(eventID, eventTitle, eventType, eventDate, eventHours, workHours, workersAvailable){
+		console.log(event_actions(eventID))
+		
+		return "<tr>" + 
+			"<td>" + eventTitle + "</td>" + 
+			"<td>" + eventType + "</td>" + 
+			"<td>" + eventDate + "</td>" + 
+			"<td>" + eventHours + "</td>" + 
+			"<td>" + workHours + "</td>" + 
+			"<td>" + newline_list(workersAvailable) + "</td>" +
+			"<td>" + event_actions(eventID) + "</td>" 
+		"</tr>"
+	}
+
+	function event_actions(eventID){
+		return 
+		"<button>Delete</button><br>" + 
+		"<input type = 'button'>Edit</button>"
+	}
+
+	function newline_list(list){
+		console.log(list)
+		return list.join("\n")
+	}
+</script>
+
+<style>
+	table, td, th{
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+</style>
+
+<body>
+	<button>Hello</button>
+
+	<table id = 'table'>
+		<tr>
+			<th>eventTitle</th>
+			<th>eventType</th>
+			<th>eventDate</th>
+			<th>eventHours</th>
+			<th>workHours</th>
+			<th>workersAvailable</th>
+			<th>Actions</th>
+		</tr>
+	</table>
+</body>
+</html>
